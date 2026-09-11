@@ -3,7 +3,24 @@
 Binary and Directory tree comparison tool using the Fuzzy Hashing concept (ssdeep)
 
 For more information: http://w00tsec.blogspot.com/2013/12/binwally-directory-tree-diff-tool-using.html
-  
+
+
+# Updated to Python3 2026-09-11
+using ppdeep instead of ssdeep.
+
+# Prerequisites for Python3 version
+- setuptools
+- cffi
+- ppdeep
+
+```bash
+source ~/.venv/bin/activate
+pip install cffi ppdeep
+```
+
+---
+Original code
+
 #Prerequisites:
 - Python 2.7+
 - gcc and build essentials
@@ -20,3 +37,7 @@ For more information: http://w00tsec.blogspot.com/2013/12/binwally-directory-tre
 
 #Usage
     python binwally.py dir1 dir2
+
+
+
+#
