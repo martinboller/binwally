@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
-import ppdeep
+import ppdeep #Using ppdeep to remove external C dependencies - maybe a tad slower than ssdeep, but still fast.
 import os, sys
 
 blocksize = 1024 * 1024
 
+# -----------------------------------------------------------------------------
+# Generate difference reports
+# -----------------------------------------------------------------------------                
 def reportdiffs(unique1, unique2, dir1, dir2, diffs):
     """
     Generate diffs report for unique files and dirs
@@ -56,6 +59,9 @@ def comparedirs(dir1, dir2, diffs, files1=None, files2=None):
     reportdiffs(unique1, unique2, dir1, dir2, diffs)
     return not (unique1 or unique2)               # true if no diffs
 
+# -----------------------------------------------------------------------------
+# Compare trees
+# -----------------------------------------------------------------------------                
 def comparetrees(dir1, dir2, diffs):
     """
     Compare all subdirectories and files in two directory trees
@@ -104,6 +110,9 @@ def comparetrees(dir1, dir2, diffs):
         diffs.append(100)
         print('    - ignored ' + name + ' (symlink)')
 
+# -----------------------------------------------------------------------------
+# Getting arguments
+# -----------------------------------------------------------------------------                
 def getargs():
     "Command-line arguments"
     try:
@@ -112,13 +121,15 @@ def getargs():
         print(
             '\nBinwally: Binary and Directory tree comparison tool\n'
             '          using the Fuzzy Hashing concept (ppdeep)\n\n'
-            'Bernardo Rodrigues, http://w00tsec.blogspot.com\n\n'
             f'Usage: python {os.path.basename(sys.argv[0])} dir1 dir2\n'
         )
         sys.exit(1)
     else:
         return (dir1, dir2)
-                
+ 
+# -----------------------------------------------------------------------------
+# MAIN
+# -----------------------------------------------------------------------------                
 if __name__ == '__main__':
     dir1, dir2 = getargs()
     diffs = []
